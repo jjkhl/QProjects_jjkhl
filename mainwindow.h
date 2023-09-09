@@ -22,7 +22,7 @@ namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 
-
+//待实现文件传输功能
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
