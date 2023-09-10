@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-//#include "filesrvdlg.h"
-//#include "filecntdlg.h"
+
 
 MainWindow::MainWindow(QStringList &onclients,QWidget *parent,QString userName)
     : QMainWindow(parent)
@@ -76,4 +75,32 @@ void MainWindow::readServer()
     // 使用onlineClients刷新listWidget
     ui->listWidget->clear();
     ui->listWidget->addItems(onlineClients);
+}
+
+void MainWindow::on_pushButton_search_clicked()
+{
+    bool ok;
+    QString text=QInputDialog::getText(this,tr("查找用户"),
+                                       tr("输入用户名："),QLineEdit::Normal,"",&ok);
+    //用户点击了确定查找并输入不为空的用户名
+    if(ok&&!text.isEmpty())
+    {
+        if(onlineClients.contains(text))
+        {
+            QList<QListWidgetItem*> items=ui->listWidget->findItems(text,Qt::MatchExactly);
+            if(!items.isEmpty())
+            {
+                QListWidgetItem *item=items.first();
+                item->setBackgroundColor(Qt::yellow);
+            }
+        }
+        else
+        {
+            QMessageBox::warning(this,"查找用户",tr("未找到用户%1").arg(text));
+        }
+    }
+    if(text.isEmpty())
+    {
+        QMessageBox::warning(this,"警告","请输入用户名！");
+    }
 }

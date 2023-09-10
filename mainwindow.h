@@ -11,9 +11,12 @@
 #include<QFileDialog>
 #include<QDateTime>
 #include<QCloseEvent>
+#include<QInputDialog>
 
 #include"ChatMsgType.h"
 #include"server.h"
+//#include "filesrvdlg.h"
+//#include "filecntdlg.h"
 
 class FileSrvDlg;
 
@@ -38,7 +41,7 @@ protected:
     void closeEvent(QCloseEvent *event);
 
 private slots:
-//    void on_pushButton_search_clicked();
+    void on_pushButton_search_clicked();
 
     void on_pushButton_send_clicked();
 
